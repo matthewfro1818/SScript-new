@@ -20,6 +20,41 @@ import tea.backend.SScriptX;
 
 using StringTools;
 
+typedef TeaCall =
+{
+	#if sys
+	/**
+		Script's file name. Will be null if the script is not from a file. 
+		
+		Not available on JavaScript.
+	**/
+	public var ?fileName(default, null):String;
+	#end
+	
+	/**
+		If call has been successful or not. 
+	**/
+	public var succeeded(default, null):Bool;
+
+	/**
+		Function's name that has been called. 
+	**/
+	public var calledFunction(default, null):String;
+
+	/**
+		Function's return value. Will be if null if there is no value returned.
+	**/
+	public var returnValue(default, null):Null<Dynamic>;
+
+	/**
+		Exceptions in this call. Will be empty if there are not any.
+	**/
+	public var exceptions(default, null):Array<Exception>;
+}
+
+/**
+	The base class for dynamic Haxe scripts.
+**/
 typedef SCall =
 {
 	public var ?fileName(default, null):String;
